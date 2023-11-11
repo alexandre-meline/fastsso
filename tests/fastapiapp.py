@@ -3,9 +3,9 @@ from typing import List, Optional
 
 # Keycloak Fast SSO imports
 # Middleware for protecting endpoints {REQUIRED}
-from fastsso.fastapi.middleware import KeycloakFastSSOMiddleware
+from fastsso.fsapi.middleware import KeycloakFastSSOMiddleware
 # Decorators for protecting endpoints {OPTIONAL}
-from fastsso.fastapi.decorators import (require_realm_roles,
+from fastsso.fsapi.decorators import (require_realm_roles,
                                         require_realm_roles,
                                         require_scope,
                                         require_email_verified,
@@ -15,9 +15,9 @@ from fastsso.fastapi.decorators import (require_realm_roles,
                                         )
 
 # Functions to get user information from request state {OPTIONAL}
-from fastsso.fastapi.core.currentuser import *
+from fastsso.fsapi.core.currentuser import *
 # Basic unprotected endpoint not requiring authentication {OPTIONAL} 
-from fastsso.fastapi.utils.unprotected_endpoints import unprotected_basic_endpoint, get_all_endpoints
+from fastsso.fsapi.utils.unprotected_endpoints import unprotected_basic_endpoint, get_all_endpoints
 
 app = FastAPI()
 

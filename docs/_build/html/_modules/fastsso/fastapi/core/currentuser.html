@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fastsso.fastapi.core.currentuser &mdash; fastsso 1.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=292eb321"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            fastsso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">fastsso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">fastsso.fastapi.core.currentuser</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for fastsso.fastapi.core.currentuser</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) 2023 Alexandre Meline &lt;alexandre[.]meline[.]dev[@]gmail.com&gt;</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">starlette.requests</span> <span class="kn">import</span> <span class="n">Request</span>
+
+
+<span class="k">def</span> <span class="nf">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a flag indicating whether the request is authenticated or not.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (`Request`): The request the user wants to check authentication status for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if request is authenticated, False otherwise.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; _kc_user_is_authenticated(request)</span>
+<span class="sd">        True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">active</span><span class="p">)</span>
+    
+
+<div class="viewcode-block" id="kc_user">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_user">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_user</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the user object from the authenticated request.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (`Request`): The request the user wants to get the info from.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        `dict`: The user object of the authenticated user.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; kc_user(request)</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;sub&quot;: &quot;123456&quot;,</span>
+<span class="sd">            &quot;email_verified&quot;: True,</span>
+<span class="sd">            &quot;name&quot;: &quot;John Smith&quot;,</span>
+<span class="sd">            &quot;preferred_username&quot;: &quot;john.smith&quot;,</span>
+<span class="sd">            &quot;given_name&quot;: &quot;John&quot;,</span>
+<span class="sd">            &quot;family_name&quot;: &quot;Smith&quot;,</span>
+<span class="sd">            &quot;email&quot;: &quot;john.smith@email.com&quot;</span>
+<span class="sd">            &quot;email_verified&quot;: True,</span>
+<span class="sd">            &quot;realm_access&quot;: {</span>
+<span class="sd">                &quot;roles&quot;: [</span>
+<span class="sd">                    &quot;offline_access&quot;,</span>
+<span class="sd">                    &quot;uma_authorization&quot;</span>
+<span class="sd">                ]</span>
+<span class="sd">            },</span>
+<span class="sd">            &quot;resource_access&quot;: {</span>
+<span class="sd">                &quot;account&quot;: {</span>
+<span class="sd">                    &quot;roles&quot;: [&quot;&quot;]</span>
+<span class="sd">                }</span>
+<span class="sd">                &quot;backend&quot;: {</span>
+<span class="sd">                    &quot;roles&quot;: [</span>
+<span class="sd">                        &quot;prenium-user&quot;</span>
+<span class="sd">                    ]</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+<span class="sd">            &quot;active&quot;: True,</span>
+<span class="sd">            &quot;scope&quot;: &quot;openid profile email&quot;,</span>
+<span class="sd">            &quot;client_id&quot;: &quot;backend&quot;,</span>
+<span class="sd">            &quot;allowed-origins&quot;: [</span>
+<span class="sd">                &quot;http://localhost:8000/&quot;</span>
+<span class="sd">            ]</span>
+<span class="sd">        }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_get_user_info">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_get_user_info">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_get_user_info</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the user info for a given attribute from the authenticated request.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (`Request`): The request the user wants to get the info from.</span>
+<span class="sd">        attr (`str`): The attribute the user wants to get the info for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        `str`: The info of the user for the given attribute.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; get_user_info(request, &quot;name&quot;)</span>
+<span class="sd">        &#39;John Smith&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_realm_access">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_realm_access">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_realm_access</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the realm access of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The realm access of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        realm_access = get_realm_access(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">realm_access</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_realm_has_role">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_realm_has_role">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_realm_has_role</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks the request if the user has the specified role in realm.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (`Request`): The request where to extract user&#39;s roles.</span>
+<span class="sd">        role (`str`): The role to check if the user has.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if user has specified role, False otherwise.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; has_role(request, &quot;admin&quot;)</span>
+<span class="sd">        True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">role</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">role</span> <span class="k">if</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">realm_roles</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="kc_user_id">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_user_id">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_user_id</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the user id from the authenticated request.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (`Request`): The request which carries user&#39;s details.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The user id of the authenticated user.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; get_user_id(request)</span>
+<span class="sd">        &#39;123456&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_user_email">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_user_email">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_user_email</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the user&#39;s email from the authenticated request.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (`Request`): The request which carries user&#39;s details.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The email of the authenticated user.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; get_user_email(request)</span>
+<span class="sd">        &#39;user@example.com&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_user_first_name">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_user_first_name">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_user_first_name</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the first name (&#39;given_name&#39;) of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The first name of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        first_name = get_user_first_name(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">given_name</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_user_last_name">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_user_last_name">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_user_last_name</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the last name (&#39;family_name&#39;) of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The last name of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        last_name = get_user_last_name(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">family_name</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_user_full_name">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_user_full_name">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_user_full_name</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the full name (&#39;name&#39;) of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The full name of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        full_name = get_user_full_name(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_user_scope">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_user_scope">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_user_scope</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the scope of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The scope of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        scope = get_scope(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">scope</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_user_verified_email">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_user_verified_email">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_user_verified_email</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the verification status (&#39;email_verified&#39;) of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The verification status of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        is_verified = get_user_verified(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email_verified</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_active_user">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_active_user">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_active_user</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the activity status (&#39;active&#39;) of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The activity status of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        is_active = get_active_user(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">active</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">kc_user_resource_access</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the resource access details of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The resource access details of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        resource_access = get_resource_access(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">resource_access</span>
+
+
+<div class="viewcode-block" id="kc_username">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_username">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_username</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the username of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The username of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        username = get_username(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">preferred_username</span> <span class="k">if</span> <span class="n">_kc_user_is_authenticated</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="kc_user_allowed_origins">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_user_allowed_origins">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_user_allowed_origins</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the allowed origins of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The allowed origins of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        allowed_origins = get_allowed_origins(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">allowed_origins</span></div>
+
+
+
+<div class="viewcode-block" id="kc_user_resource_access">
+<a class="viewcode-back" href="../../../../fastsso.fastapi.core.html#fastsso.fastapi.core.currentuser.kc_user_resource_access">[docs]</a>
+<span class="k">def</span> <span class="nf">kc_user_resource_access</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the resource access details of the authenticated user from the request state.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request: The incoming server request.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The resource access details of the user authenticated via Keycloak if authenticated, else None.</span>
+<span class="sd">        </span>
+<span class="sd">    Examples:</span>
+<span class="sd">        resource_access = get_resource_access(request)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">resource_access</span>  </div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alexandre Meline.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

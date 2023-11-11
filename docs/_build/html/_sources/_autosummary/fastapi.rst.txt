@@ -1,0 +1,23 @@
+﻿fastapi
+=======
+
+.. automodule:: fastapi
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

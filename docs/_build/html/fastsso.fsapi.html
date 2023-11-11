@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fastsso.fsapi package &mdash; fastsso 1.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=292eb321"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fastsso.fsapi.core package" href="fastsso.fsapi.core.html" />
+    <link rel="prev" title="fastsso.django.middleware package" href="fastsso.django.middleware.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            fastsso
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">fastsso</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="fastsso.html">fastsso package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="fastsso.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="fastsso.django.html">fastsso.django package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">fastsso.fsapi package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fastsso.streamlit.html">fastsso.streamlit package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.html#module-fastsso">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">fastsso</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">fastsso</a></li>
+          <li class="breadcrumb-item"><a href="fastsso.html">fastsso package</a></li>
+      <li class="breadcrumb-item active">fastsso.fsapi package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/fastsso.fsapi.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fastsso-fsapi-package">
+<h1>fastsso.fsapi package<a class="headerlink" href="#fastsso-fsapi-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fastsso.fsapi.core.html">fastsso.fsapi.core package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.core.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.core.html#module-fastsso.fsapi.core.currentuser">fastsso.fsapi.core.currentuser module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_active_user"><code class="docutils literal notranslate"><span class="pre">kc_active_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_get_user_info"><code class="docutils literal notranslate"><span class="pre">kc_get_user_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_realm_access"><code class="docutils literal notranslate"><span class="pre">kc_realm_access()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_realm_has_role"><code class="docutils literal notranslate"><span class="pre">kc_realm_has_role()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_user"><code class="docutils literal notranslate"><span class="pre">kc_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_user_allowed_origins"><code class="docutils literal notranslate"><span class="pre">kc_user_allowed_origins()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_user_email"><code class="docutils literal notranslate"><span class="pre">kc_user_email()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_user_first_name"><code class="docutils literal notranslate"><span class="pre">kc_user_first_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_user_full_name"><code class="docutils literal notranslate"><span class="pre">kc_user_full_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_user_id"><code class="docutils literal notranslate"><span class="pre">kc_user_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_user_last_name"><code class="docutils literal notranslate"><span class="pre">kc_user_last_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_user_resource_access"><code class="docutils literal notranslate"><span class="pre">kc_user_resource_access()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_user_scope"><code class="docutils literal notranslate"><span class="pre">kc_user_scope()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_user_verified_email"><code class="docutils literal notranslate"><span class="pre">kc_user_verified_email()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.currentuser.kc_username"><code class="docutils literal notranslate"><span class="pre">kc_username()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.core.html#module-fastsso.fsapi.core.exceptions">fastsso.fsapi.core.exceptions module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.exceptions.invalid_token_response"><code class="docutils literal notranslate"><span class="pre">invalid_token_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.exceptions.keycloak_middleware_failed_response"><code class="docutils literal notranslate"><span class="pre">keycloak_middleware_failed_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.exceptions.keycloak_server_not_up_response"><code class="docutils literal notranslate"><span class="pre">keycloak_server_not_up_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.exceptions.unauthorized_response"><code class="docutils literal notranslate"><span class="pre">unauthorized_response()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.exceptions.unverified_user_response"><code class="docutils literal notranslate"><span class="pre">unverified_user_response()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.core.html#module-fastsso.fsapi.core.logging">fastsso.fsapi.core.logging module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.core.html#fastsso.fsapi.core.logging.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.core.html#module-fastsso.fsapi.core">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fastsso.fsapi.middleware.html">fastsso.fsapi.middleware package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.middleware.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.middleware.html#module-fastsso.fsapi.middleware.keycloak_middleware">fastsso.fsapi.middleware.keycloak_middleware module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.middleware.html#fastsso.fsapi.middleware.keycloak_middleware.KeycloakFastSSOMiddleware"><code class="docutils literal notranslate"><span class="pre">KeycloakFastSSOMiddleware</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="fastsso.fsapi.middleware.html#fastsso.fsapi.middleware.keycloak_middleware.KeycloakFastSSOMiddleware.dispatch"><code class="docutils literal notranslate"><span class="pre">KeycloakFastSSOMiddleware.dispatch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="fastsso.fsapi.middleware.html#fastsso.fsapi.middleware.keycloak_middleware.KeycloakFastSSOMiddleware.set_request_state"><code class="docutils literal notranslate"><span class="pre">KeycloakFastSSOMiddleware.set_request_state()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.middleware.html#module-fastsso.fsapi.middleware">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fastsso.fsapi.utils.html">fastsso.fsapi.utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.utils.html#module-fastsso.fsapi.utils.keycloak_validator">fastsso.fsapi.utils.keycloak_validator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.utils.html#fastsso.fsapi.utils.keycloak_validator.keycloakValidator"><code class="docutils literal notranslate"><span class="pre">keycloakValidator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="fastsso.fsapi.utils.html#fastsso.fsapi.utils.keycloak_validator.keycloakValidator.keycloak_validate_connection"><code class="docutils literal notranslate"><span class="pre">keycloakValidator.keycloak_validate_connection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="fastsso.fsapi.utils.html#fastsso.fsapi.utils.keycloak_validator.keycloakValidator.token_to_user_info"><code class="docutils literal notranslate"><span class="pre">keycloakValidator.token_to_user_info()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.utils.html#module-fastsso.fsapi.utils.unprotected_endpoints">fastsso.fsapi.utils.unprotected_endpoints module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.utils.html#fastsso.fsapi.utils.unprotected_endpoints.get_all_endpoints"><code class="docutils literal notranslate"><span class="pre">get_all_endpoints()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.utils.html#module-fastsso.fsapi.utils.user">fastsso.fsapi.utils.user module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.utils.html#fastsso.fsapi.utils.user.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="fastsso.fsapi.utils.html#fastsso.fsapi.utils.user.get_user_info"><code class="docutils literal notranslate"><span class="pre">get_user_info()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fastsso.fsapi.utils.html#module-fastsso.fsapi.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-fastsso.fsapi.decorators">
+<span id="fastsso-fsapi-decorators-module"></span><h2>fastsso.fsapi.decorators module<a class="headerlink" href="#module-fastsso.fsapi.decorators" title="Link to this heading"></a></h2>
+<p>MIT License</p>
+<p>Copyright (c) 2023 Alexandre Meline &lt;<a class="reference external" href="mailto:alexandre&#46;meline&#46;dev&#37;&#52;&#48;gmail&#46;com">alexandre<span>&#46;</span>meline<span>&#46;</span>dev<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="fastsso.fsapi.decorators.require_active_user">
+<span class="sig-prename descclassname"><span class="pre">fastsso.fsapi.decorators.</span></span><span class="sig-name descname"><span class="pre">require_active_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastsso/fsapi/decorators.html#require_active_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fastsso.fsapi.decorators.require_active_user" title="Link to this definition"></a></dt>
+<dd><p>Decorator function to check if the user is active.
+This function will call the original function only if the user is active, otherwise it will return a JSONResponse
+with the message “User is not active” and status code 403.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>func : The function to be decorated.</p>
+</dd>
+<dt>Returns:</dt><dd><p>wrapper : Decorated function.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<blockquote>
+<div><p>&#64;router.get(‘/getdata’)
+&#64;require_active_user
+async def get_data():</p>
+<blockquote>
+<div><p>pass</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fastsso.fsapi.decorators.require_allowed_origin">
+<span class="sig-prename descclassname"><span class="pre">fastsso.fsapi.decorators.</span></span><span class="sig-name descname"><span class="pre">require_allowed_origin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastsso/fsapi/decorators.html#require_allowed_origin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fastsso.fsapi.decorators.require_allowed_origin" title="Link to this definition"></a></dt>
+<dd><p>Decorator function to check if the request is coming from an allowed origin.
+This function will call the original function only if the request is coming from an allowed origin, otherwise it
+will return a JSONResponse with a message and status code 403.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>origin (str): The origin to be checked.</p>
+</dd>
+<dt>Returns:</dt><dd><p>wrapper : Decorated function.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<blockquote>
+<div><p>&#64;router.get(‘/getdata’)
+&#64;require_allowed_origin(’<a class="reference external" href="https://www.example.com">https://www.example.com</a>’)
+async def get_data():</p>
+<blockquote>
+<div><p>pass</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fastsso.fsapi.decorators.require_email_verified">
+<span class="sig-prename descclassname"><span class="pre">fastsso.fsapi.decorators.</span></span><span class="sig-name descname"><span class="pre">require_email_verified</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastsso/fsapi/decorators.html#require_email_verified"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fastsso.fsapi.decorators.require_email_verified" title="Link to this definition"></a></dt>
+<dd><p>Decorator function to check if user’s email associated with token is verified.
+Returns decorated function or raises an exception if email is not verified.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>func : The function to be decorated.</p>
+</dd>
+<dt>Returns:</dt><dd><p>func : Decorated function.</p>
+</dd>
+<dt>Raises:</dt><dd><p>HTTPException : If email is not verified.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<blockquote>
+<div><p>&#64;router.get(‘/getdata’)
+&#64;require_email_verified
+async def get_data():</p>
+<blockquote>
+<div><p>pass</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fastsso.fsapi.decorators.require_realm_roles">
+<span class="sig-prename descclassname"><span class="pre">fastsso.fsapi.decorators.</span></span><span class="sig-name descname"><span class="pre">require_realm_roles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastsso/fsapi/decorators.html#require_realm_roles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fastsso.fsapi.decorators.require_realm_roles" title="Link to this definition"></a></dt>
+<dd><p>Decorator function to check if any of the given roles are assigned to user’s token.
+Returns decorated function or raises an exception if role is not assigned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>roles : List of roles.</p>
+</dd>
+<dt>Returns:</dt><dd><p>func : Decorated function.</p>
+</dd>
+<dt>Raises:</dt><dd><p>HTTPException : If none of the roles is assigned to user token.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<blockquote>
+<div><p>&#64;router.get(‘/getdata’)
+&#64;require_role([‘admin’, ‘manager’])
+async def get_data():</p>
+<blockquote>
+<div><p>pass</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fastsso.fsapi.decorators.require_resource_access">
+<span class="sig-prename descclassname"><span class="pre">fastsso.fsapi.decorators.</span></span><span class="sig-name descname"><span class="pre">require_resource_access</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastsso/fsapi/decorators.html#require_resource_access"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fastsso.fsapi.decorators.require_resource_access" title="Link to this definition"></a></dt>
+<dd><p>Decorator function to check if the user has access to the given resource with the given role.
+This function will call the original function only if the user has access to the resource with the given role,
+otherwise it will return a JSONResponse with a message and status code 403.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>resource (str): The resource to be accessed.
+role (str): The role required to access the resource.</p>
+</dd>
+<dt>Returns:</dt><dd><p>wrapper : Decorated function.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<blockquote>
+<div><p>&#64;router.get(‘/getdata’)
+&#64;require_resource_access(‘sample_resource’, ‘sample_role’)
+async def get_data():</p>
+<blockquote>
+<div><p>pass</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fastsso.fsapi.decorators.require_scope">
+<span class="sig-prename descclassname"><span class="pre">fastsso.fsapi.decorators.</span></span><span class="sig-name descname"><span class="pre">require_scope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scopes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastsso/fsapi/decorators.html#require_scope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fastsso.fsapi.decorators.require_scope" title="Link to this definition"></a></dt>
+<dd><p>This decorator function checks if the request has the required scopes. 
+If not, the function returns an HTTP 403 (Forbidden) response.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>scopes (List[str]): a list of required scopes.</p>
+</dd>
+<dt>Returns:</dt><dd><p>The required function if the scope requirements are met, otherwise an HTTP 403 response.</p>
+</dd>
+</dl>
+<p>Example usage:</p>
+<blockquote>
+<div><p>&#64;require_scope(scopes=[‘scope1’, ‘scope2’])
+async def example_endpoint(request: Request):</p>
+<blockquote>
+<div><p>…</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-fastsso.fsapi">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-fastsso.fsapi" title="Link to this heading"></a></h2>
+<p>MIT License</p>
+<p>Copyright (c) 2023 Alexandre Meline &lt;<a class="reference external" href="mailto:alexandre&#46;meline&#46;dev&#37;&#52;&#48;gmail&#46;com">alexandre<span>&#46;</span>meline<span>&#46;</span>dev<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fastsso.django.middleware.html" class="btn btn-neutral float-left" title="fastsso.django.middleware package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fastsso.fsapi.core.html" class="btn btn-neutral float-right" title="fastsso.fsapi.core package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Alexandre Meline.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
