@@ -22,7 +22,28 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from fastsso.fastapi.core.currentuser import (kc_user_is_authenticated,
-                                                        kc_get_user_info,
-                                                        kc_realm_has_role
-                                                        )
+from fastsso.fastapi.core.currentuser import (  kc_user,
+                                                kc_get_user_info,
+                                                kc_realm_access,
+                                                kc_realm_has_role,
+                                                kc_user_id,
+                                                kc_user_email,
+                                                kc_user_first_name,
+                                                kc_user_last_name,
+                                                kc_user_full_name,
+                                                kc_user_scope,
+                                                kc_user_verified_email,
+                                                kc_active_user,
+                                                kc_user_resource_access,
+                                                kc_username,
+                                                kc_user_allowed_origins,
+                                                kc_user_resource_access
+                                              )
+
+from fastsso.fastapi.core.exceptions import (unauthorized_response,
+                                            invalid_token_response,
+                                            unverified_user_response,
+                                            keycloak_server_not_up_response,
+                                            keycloak_middleware_failed_response)
+
+from fastsso.fastapi.core.logging import logger

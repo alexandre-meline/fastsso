@@ -23,7 +23,7 @@ SOFTWARE.
 """
 from keycloak import KeycloakOpenID
 from keycloak.exceptions import KeycloakAuthenticationError
-from fastsso.fastapi.utils.user import User, get_user_info, get_roles_resource_access
+from fastsso.fastapi.utils.user import User, get_user_info
 
 
 class keycloakValidator:
@@ -76,7 +76,7 @@ class keycloakValidator:
             return False
 
 
-    def token_to_user_info(self, token: str) -> User:
+    def token_to_user_info(self, token: str, active_refresh: bool = True) -> User:
         """
         Validate a token string and return the token's info as a DICT object.
 
