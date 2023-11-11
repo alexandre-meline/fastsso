@@ -21,5 +21,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
+from fastapi import FastAPI
 
+# Basic unprotected endpoint not requiring authentication {OPTIONAL}
 unprotected_basic_endpoint = ['/docs', '/openapi.json', '/redoc']
+
+# Get all endpoints from current fastapi app
+def get_all_endpoints(app: FastAPI):
+    endpoints = []
+    for route in app.routes:
+        endpoints.append(route.path)
+    print(endpoints)
+    return endpoints

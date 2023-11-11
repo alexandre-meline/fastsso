@@ -26,9 +26,23 @@ from functools import wraps
 from starlette.responses import JSONResponse
 from fastapi import Request
 from typing import List
-from fastsso.fastapi.core.currentuser import (  kc_user_is_authenticated,
+from fastsso.fastapi.core.currentuser import (  kc_user,
                                                 kc_get_user_info,
-                                                kc_realm_has_role)
+                                                kc_realm_access,
+                                                kc_realm_has_role,
+                                                kc_user_id,
+                                                kc_user_email,
+                                                kc_user_first_name,
+                                                kc_user_last_name,
+                                                kc_user_full_name,
+                                                kc_user_scope,
+                                                kc_user_verified_email,
+                                                kc_active_user,
+                                                kc_user_resource_access,
+                                                kc_username,
+                                                kc_user_allowed_origins,
+                                                kc_user_resource_access
+                                              )
 
 def require_realm_roles(roles: List[str]):
     """
@@ -61,8 +75,7 @@ def require_realm_roles(roles: List[str]):
         return wrapper
     return decorator
 
-'''
-def require_group(groups: List[str]):
+
     """
     Decorator function to check if user's token belongs to any of the listed groups.
     Returns decorated function or raises an exception if user doesn't belong to any of the listed groups.
@@ -87,39 +100,7 @@ def require_group(groups: List[str]):
         @wraps(func)
         def wrapper(request: Request, *args, **kwargs):
             for group in groups:
-                if KeycloakUtils.is_in_group(request, group):
-                    return func(request, *args, **kwargs)
-            return JSONResponse({'message': 'Acces denied'}, status_code=403)
-        return wrapper
-    return decorator
-
-
-def require_role_or_group(roles: List[str], groups: List[str]):
-    """
-    This decorator function checks if a request has the required roles or belongs to the required groups. 
-    If not, the function returns an HTTP 403 (Forbidden) response.
-   
-    Args:
-        roles (List[str]): a list of required roles.
-        groups (List[str]): a list of required groups.
-      
-    Returns:
-        The required function if the role or group requirements are met, otherwise an HTTP 403 response.
-
-    Example usage:
-    
-        @require_role_or_group(roles=['admin', 'user'], groups=['group1'])
-        async def example_endpoint(request: Request):
-            ...
-    """
-    def decorator(func):
-        @wraps(func)
-        def wrapper(request: Request, *args, **kwargs):
-            for role in roles:
-                if KeycloakUtils.has_role(request, role):
-                    return func(request, *args, **kwargs)
-            for group in groups:
-                if KeycloakUtils.is_in_group(request, group):
+                if kc_user_in_group(request, group):
                     return func(request, *args, **kwargs)
             return JSONResponse({'message': 'Acces denied'}, status_code=403)
         return wrapper
@@ -147,7 +128,7 @@ def require_scope(scopes: List[str]):
         @wraps(func)
         def wrapper(request: Request, *args, **kwargs):
             for scope in scopes:
-                if KeycloakUtils.get_scope(request) == scope:
+                if kc_user_scope(request) == scope:
                     return func(request, *args, **kwargs)
             return JSONResponse({'message': 'Acces denied'}, status_code=403)
         return wrapper
@@ -177,7 +158,7 @@ def require_email_verified(func):
     """
     @wraps(func)
     def wrapper(request: Request, *args, **kwargs):
-        if KeycloakUtils.get_user_verified(request):
+        if kc_user_verified_email(request):
             return func(request, *args, **kwargs)
         else:
             return JSONResponse({'message': 'Email not verified'}, status_code=403)
@@ -205,41 +186,11 @@ def require_active_user(func):
     """
     @wraps(func)
     def wrapper(request: Request, *args, **kwargs):
-        if KeycloakUtils.get_active_user(request):
+        if kc_active_user(request):
             return func(request, *args, **kwargs)
         else:
             return JSONResponse({'message': 'User is not active'}, status_code=403)
     return wrapper
-
-
-def require_token_type(token_type: str):
-    """
-    Decorator function to check if the token type of the user is equal to the given token type.
-    This function will call the original function only if the token type is valid, otherwise it will return a
-    JSONResponse with a message and status code 403.
-    
-    Args:
-        token_type (str): The token type to be checked for.
-
-    Returns:
-        wrapper : Decorated function.
-
-    Example:
-
-        @router.get('/getdata')
-        @require_token_type('sample_token_type')
-        async def get_data():
-            pass
-    """
-    def decorator(func):
-        @wraps(func)
-        def wrapper(request: Request, *args, **kwargs):
-            if KeycloakUtils.get_token_type(request) == token_type:
-                return func(request, *args, **kwargs)
-            else:
-                return JSONResponse({'message': f'Required token type is {token_type}'}, status_code=403)
-        return wrapper
-    return decorator
 
 
 def require_resource_access(resource: str, role: str):
@@ -265,7 +216,7 @@ def require_resource_access(resource: str, role: str):
     def decorator(func):
         @wraps(func)
         def wrapper(request: Request, *args, **kwargs):
-            resources = KeycloakUtils.get_resource_access(request)
+            resources = kc_user_resource_access(request)
             if resources and resources.get(resource, {}).get('roles', []) == role:
                 return func(request, *args, **kwargs)
             else:
@@ -275,7 +226,7 @@ def require_resource_access(resource: str, role: str):
     return decorator
 
 
-def require_allowed_origin(origin: str):
+def require_allowed_origin(origins: list):
     """
     Decorator function to check if the request is coming from an allowed origin.
     This function will call the original function only if the request is coming from an allowed origin, otherwise it
@@ -297,10 +248,10 @@ def require_allowed_origin(origin: str):
     def decorator(func):
         @wraps(func)
         def wrapper(request: Request, *args, **kwargs):
-            if origin in request.state.token_info.get('allowed-origins', []):
-                return func(request, *args, **kwargs)
+            for origin in origins:
+                if origin in kc_user_allowed_origins(request):
+                    return func(request, *args, **kwargs)
             else:
                 return JSONResponse({'message': f'Access from origin {origin} is not allowed'}, status_code=403)
         return wrapper
     return decorator
-'''

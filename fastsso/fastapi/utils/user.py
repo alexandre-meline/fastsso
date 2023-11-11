@@ -21,7 +21,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-import json
 
 
 class User:
@@ -60,12 +59,13 @@ class User:
             self.preferred_username = token['preferred_username']
             self.username = token['username']
             self.email = token['email']
-            self.email_verified = token['email_verified'] 
+            self.email_verified = token['email_verified']
+            self.realm_access = token['realm_access']
             self.realm_roles = token['realm_access']['roles'] 
             self.resource_access = [token['resource_access']] 
             self.active = token['active']
             self.service = token['azp']
-            self.scope = token['scope'].split(',')
+            self.scope = token['scope'].split(' ')
             self.client_id = token['client_id']
             self.allowed_origins = token['allowed-origins']
         except KeyError as _:
@@ -84,6 +84,7 @@ class User:
             'username': self.username,
             'email': self.email,
             'email_verified': self.email_verified,
+            'realm_access': self.realm_access,
             'realm_roles': self.realm_roles,
             'resource_access': self.resource_access,
             'active': self.active,
@@ -92,8 +93,7 @@ class User:
             'client_id': self.client_id,
             'allowed_origins': self.allowed_origins
         }
-
-
+    
 def get_user_info(token: dict):
     """
     Extracts user info from a token.
@@ -105,21 +105,3 @@ def get_user_info(token: dict):
         User: User object with data extracted from the token.
     """
     return User(token)
-
-
-def get_roles_resource_access(resource_access: list, resource_name: str):
-    """
-    Retrieves the roles of a specific resource the user can access.
-
-    Parameters:
-        resource_access (list): Information about the resources the user can access.
-        resource_name (str): The name of the resource.
-
-    Returns:
-        list: A list of roles in relation to the specified resource.
-    """
-    for resource in resource_access:
-      for rsc_name, roles in resource.items():
-        if rsc_name == resource_name:
-          return roles['roles']
-    return None

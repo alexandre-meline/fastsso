@@ -1,6 +1,45 @@
-import json
+"""
+MIT License
+
+Copyright (c) 2023 Alexandre Meline <alexandre[.]meline[.]dev[@]gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
 from starlette.requests import Request
 
+
+def _kc_user_is_authenticated(request: Request):
+    """
+    Returns a flag indicating whether the request is authenticated or not.
+
+    Args:
+        request (`Request`): The request the user wants to check authentication status for.
+
+    Returns:
+        bool: True if request is authenticated, False otherwise.
+
+    Example:
+        >>> _kc_user_is_authenticated(request)
+        True
+    """
+    return bool(request.state.user.active)
+    
 
 def kc_user(request: Request):
     """
@@ -47,25 +86,7 @@ def kc_user(request: Request):
             ]
         }
     """
-    return request.state.user if kc_user_is_authenticated(request) else None
-
-
-
-def kc_user_is_authenticated(request: Request):
-    """
-    Returns a flag indicating whether the request is authenticated or not.
-
-    Args:
-        request (`Request`): The request the user wants to check authentication status for.
-
-    Returns:
-        bool: True if request is authenticated, False otherwise.
-
-    Example:
-        >>> kc_user_is_authenticated(request)
-        True
-    """
-    return bool(request.state.user.active)
+    return request.state.user if _kc_user_is_authenticated(request) else None
 
 
 def kc_get_user_info(request: Request, attr: str):
@@ -83,8 +104,23 @@ def kc_get_user_info(request: Request, attr: str):
         >>> get_user_info(request, "name")
         'John Smith'
     """
-    user_info = request.state.user.__dict__.get(attr) if kc_user_is_authenticated(request) else None
-    return user_info if kc_user_is_authenticated(request) else None
+    return getattr(request.state.user, attr) if _kc_user_is_authenticated(request) else None
+
+
+def kc_realm_access(request: Request):
+    """
+    Returns the realm access of the authenticated user from the request state.
+
+    Args:
+        request: The incoming server request.
+
+    Returns:
+        The realm access of the user authenticated via Keycloak if authenticated, else None.
+        
+    Examples:
+        realm_access = get_realm_access(request)
+    """
+    return request.state.user.realm_access if _kc_user_is_authenticated(request) else None
 
 
 def kc_realm_has_role(request: Request, role: str):
@@ -102,28 +138,8 @@ def kc_realm_has_role(request: Request, role: str):
         >>> has_role(request, "admin")
         True
     """
-    realm_roles = request.state.user.realm_roles
-    return role in realm_roles if kc_user_is_authenticated(request) else False
-
-'''
-def kc_user_in_group(request: Request, group: str):
-    """
-    Checks the request if the user is in the specified group.
-
-    Args:
-        request (`Request`): The request to check if a user is in a group.
-        group (`str`): The group to check if the user is a member of.
-
-    Returns:
-        bool: True if user is in specified group, False otherwise.
-    
-    Example:
-        >>> is_in_group(request, "test_group")
-        False
-    """
-    groups = request.state.token_info.get('groups', [])
-    return group in groups if kc_user_is_authenticated(request) else False
-
+    print(role)
+    return role if role in request.state.user.realm_roles else None
 
 def kc_user_id(request: Request):
     """
@@ -139,8 +155,7 @@ def kc_user_id(request: Request):
         >>> get_user_id(request)
         '123456'
     """
-    user_id = request.state.token_info.get('sub') if kc_user_is_authenticated(request) else None
-    return user_id if kc_user_is_authenticated(request) else None
+    return request.state.user.id if _kc_user_is_authenticated(request) else None
 
 
 def kc_user_email(request: Request):
@@ -157,8 +172,7 @@ def kc_user_email(request: Request):
         >>> get_user_email(request)
         'user@example.com'
     """
-    user_email = request.state.token_info.get('email') if kc_user_is_authenticated(request) else None
-    return user_email if kc_user_is_authenticated(request) else None
+    return request.state.user.email if _kc_user_is_authenticated(request) else None
 
 
 def kc_user_first_name(request: Request):
@@ -174,8 +188,7 @@ def kc_user_first_name(request: Request):
     Examples:
         first_name = get_user_first_name(request)
     """
-    user_first_nm = request.state.token_info.get('given_name') if kc_user_is_authenticated(request) else None
-    return user_first_nm if kc_user_is_authenticated(request) else None
+    return request.state.user.given_name if _kc_user_is_authenticated(request) else None
 
 
 def kc_user_last_name(request: Request):
@@ -191,8 +204,7 @@ def kc_user_last_name(request: Request):
     Examples:
         last_name = get_user_last_name(request)
     """
-    user_last_nm = request.state.token_info.get('family_name') if kc_user_is_authenticated(request) else None
-    return user_last_nm if kc_user_is_authenticated(request) else None
+    return request.state.user.family_name if _kc_user_is_authenticated(request) else None
 
 
 def kc_user_full_name(request: Request):
@@ -208,8 +220,7 @@ def kc_user_full_name(request: Request):
     Examples:
         full_name = get_user_full_name(request)
     """
-    user_full_name = request.state.token_info.get('name') if kc_user_is_authenticated(request) else None
-    return user_full_name if kc_user_is_authenticated(request) else None
+    return request.state.user.name if _kc_user_is_authenticated(request) else None
 
 
 def kc_user_scope(request: Request):
@@ -225,8 +236,7 @@ def kc_user_scope(request: Request):
     Examples:
         scope = get_scope(request)
     """
-    scope = request.state.user_scope
-    return scope if kc_user_is_authenticated(request) else None
+    return request.state.user.scope if _kc_user_is_authenticated(request) else None
 
 
 def kc_user_verified_email(request: Request):
@@ -242,8 +252,7 @@ def kc_user_verified_email(request: Request):
     Examples:
         is_verified = get_user_verified(request)
     """
-    user_verif = request.state.token_info.get('email_verified') if kc_user_is_authenticated(request) else None
-    return user_verif if kc_user_is_authenticated(request) else None
+    return request.state.user.email_verified if _kc_user_is_authenticated(request) else None
 
 
 def kc_active_user(request: Request):
@@ -259,8 +268,7 @@ def kc_active_user(request: Request):
     Examples:
         is_active = get_active_user(request)
     """
-    active_user = request.state.token_info.get('active') if kc_user_is_authenticated(request) else None
-    return active_user if kc_user_is_authenticated(request) else None
+    return request.state.user.active if _kc_user_is_authenticated(request) else None
 
 
 def kc_user_resource_access(request: Request):
@@ -276,6 +284,52 @@ def kc_user_resource_access(request: Request):
     Examples:
         resource_access = get_resource_access(request)
     """
-    rsc_acs = request.state.token_info.get('resource_access') if kc_user_is_authenticated(request) else None
-    return rsc_acs if kc_user_is_authenticated(request) else None
-'''
+    return request.state.user.resource_access
+
+
+def kc_username(request: Request):
+    """
+    Extracts the username of the authenticated user from the request state.
+
+    Args:
+        request: The incoming server request.
+
+    Returns:
+        The username of the user authenticated via Keycloak if authenticated, else None.
+        
+    Examples:
+        username = get_username(request)
+    """
+    return request.state.user.preferred_username if _kc_user_is_authenticated(request) else None
+
+
+def kc_user_allowed_origins(request: Request):
+    """
+    Extracts the allowed origins of the authenticated user from the request state.
+
+    Args:
+        request: The incoming server request.
+
+    Returns:
+        The allowed origins of the user authenticated via Keycloak if authenticated, else None.
+        
+    Examples:
+        allowed_origins = get_allowed_origins(request)
+    """
+    return request.state.user.allowed_origins
+
+
+def kc_user_resource_access(request: Request):
+    """
+    Extracts the resource access details of the authenticated user from the request state.
+
+    Args:
+        request: The incoming server request.
+
+    Returns:
+        The resource access details of the user authenticated via Keycloak if authenticated, else None.
+        
+    Examples:
+        resource_access = get_resource_access(request)
+    """
+    return request.state.user.resource_access  

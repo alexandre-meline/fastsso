@@ -23,18 +23,7 @@ SOFTWARE.
 """
 
 # FastAPI
-from fastsso.fastapi.decorators import *
-from fastsso.fastapi.logging import logger
-from fastsso.fastapi.core.currentuser import *
-from fastsso.fastapi.utils.unprotected_endpoints import unprotected_basic_endpoint
-from fastsso.fastapi.utils.user import get_user_info, get_roles_resource_access
-from fastsso.fastapi.utils.keycloak_validator import keycloakValidator
-from fastsso.fastapi.core.exceptions import (unauthorized_response,
-                                             invalid_token_response,
-                                             unverified_user_response,
-                                             keycloak_server_not_up_response,
-                                             keycloak_middleware_failed_response)
-from fastsso.fastapi.middleware.keycloak_middleware import KeycloakFastSSOMiddleware
+from fastsso import fastapi
 
 # TODO: Add support for other frameworks
 # Django

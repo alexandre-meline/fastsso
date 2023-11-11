@@ -5,33 +5,39 @@ from typing import List, Optional
 # Middleware for protecting endpoints {REQUIRED}
 from fastsso.fastapi.middleware import KeycloakFastSSOMiddleware
 # Decorators for protecting endpoints {OPTIONAL}
-from fastsso.fastapi.decorators import *
-# Logger for debugging purposes {OPTIONAL}
-from fastsso.fastapi.logging import logger
+from fastsso.fastapi.decorators import (require_realm_roles,
+                                        require_realm_roles,
+                                        require_scope,
+                                        require_email_verified,
+                                        require_active_user,
+                                        require_allowed_origin,
+                                        require_resource_access
+                                        )
+
 # Functions to get user information from request state {OPTIONAL}
 from fastsso.fastapi.core.currentuser import *
 # Basic unprotected endpoint not requiring authentication {OPTIONAL} 
-from fastsso.fastapi.utils.unprotected_endpoints import unprotected_basic_endpoint
-
-logger.info("Starting the FastAPI server")
+from fastsso.fastapi.utils.unprotected_endpoints import unprotected_basic_endpoint, get_all_endpoints
 
 app = FastAPI()
 
-# Ajoutez une configuration ici (server_url, client_id, etc.).
+# Add Keycloak Fast SSO middleware in FastAPI app
+# Now all endpoints are protected by default and require token validation
+# except endpoints in unprotected_basic_endpoint
+# If you want to protect all endpoints, just remove unprotected_basic_endpoint
+# If you want to protect only some endpoints, just add them in unprotected_basic_endpoint
+# 
 app.add_middleware(KeycloakFastSSOMiddleware,   server_url='http://localhost:8080/', 
                                                 client_id='microservicebackend1', realm_name='master', 
                                                 client_secret_key='vzqJpMYa3CiO5VGXkd20q7tOebrsDsP1',
                                                 unprotected_endpoints=unprotected_basic_endpoint,
                                                 user_model=None, create_user=False)
 
-#@require_role(roles=["banal-users"])
-#@require_scope(scopes=["openid profile email"])
-#@require_email_verified
-#@require_active_user
-#@require_token_type(token_type="Bearer")
-#@require_resource_access(resource="frontend", role="banal-users")
-#@require_allowed_origin(origin="http://localhost:8001/")
-
+# _________________________________________________________________ #
+#                                                                   #
+#                       UNPROTECTED ENDPOINTS                       #
+#                                                                   #
+# _________________________________________________________________ #
 
 # Unprotected endpoint
 @app.get("/")
@@ -65,7 +71,7 @@ def user_firstname(request: Request, user_info: str = "given_name"):
 
 # Unprotected endpoint
 @app.get("/realm-has-role")
-def realm_has_role(request: Request):
+def realm_has_role(request: Request, role: str = "Premium"):
     """
     Checks if user has a specific role in the realm.
     
@@ -75,8 +81,6 @@ def realm_has_role(request: Request):
     Returns:
         bool: True if request is authenticated, False otherwise.
     """
-    # Set role
-    role = "Premium"
     # Check if user has role
     has_role = kc_realm_has_role(request, role=role)
 
@@ -88,3 +92,64 @@ def realm_has_role(request: Request):
         return {"message": f"User does not have role {role}"}
 
 
+# Endpoint to get the authenticated user's detailed information
+@app.get("/user/details/1")
+def get_user_details(request: Request):
+    """
+    An endpoint to retrieve the full details of the authenticated user.
+    Requires an authenticated request.
+    """
+
+    user_details = {
+        "user_id": kc_user_id(request),
+        "email": kc_user_email(request),
+        "first_name": kc_user_first_name(request),
+        "last_name": kc_user_last_name(request),
+        "full_name": kc_user_full_name(request),
+        "scope": kc_user_scope(request),
+        "active": kc_active_user(request),
+        "allowed_origins": kc_user_allowed_origins(request),
+        "resource_access": kc_user_resource_access(request),
+        "username": kc_username(request),
+        "email_verified": kc_user_verified_email(request),
+        "realm_access": kc_realm_access(request)
+    }
+    return user_details
+
+@app.get("/user/details/2")
+def get_user_details(request: Request):
+    """
+    An endpoint to retrieve the full details of the authenticated user.
+    Requires an authenticated request.
+    """
+
+    user_details = {
+        "user_id": request.state.user.id,
+        "email": request.state.user.email,
+        "first_name": request.state.user.given_name,
+        "last_name": request.state.user.family_name,
+        "full_name": request.state.user.name,
+        "scope": request.state.user.scope,
+        "active": request.state.user.active,
+        "allowed_origins": request.state.user.allowed_origins,
+        "resource_access": request.state.user.resource_access,
+        "username": request.state.user.preferred_username,
+        "email_verified": request.state.user.email_verified,
+        "realm_access": request.state.user.realm_access
+    }
+    return user_details
+
+# Endpoint to check user's role
+@app.get("/user/has-role/{required_role}")
+def check_user_role(request: Request, required_role: str):
+    """
+    An endpoint to check if the current user has a specific role.
+    The role to check is provided as a path parameter 'required_role'.
+    Requires an authenticated request with roles included.
+    """
+    print(request.state.user.realm_roles)
+    has_role = kc_realm_has_role(request, required_role)
+    return {"has_role": has_role}
+
+
+print(get_all_endpoints(app))
