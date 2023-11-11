@@ -1,0 +1,31 @@
+fastsso.fastapi package
+=======================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   fastsso.fastapi.core
+   fastsso.fastapi.middleware
+   fastsso.fastapi.utils
+
+Submodules
+----------
+
+fastsso.fastapi.decorators module
+---------------------------------
+
+.. automodule:: fastsso.fastapi.decorators
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fastsso.fastapi
+   :members:
+   :undoc-members:
+   :show-inheritance:

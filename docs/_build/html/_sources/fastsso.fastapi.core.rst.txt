@@ -1,0 +1,37 @@
+fastsso.fastapi.core package
+============================
+
+Submodules
+----------
+
+fastsso.fastapi.core.currentuser module
+---------------------------------------
+
+.. automodule:: fastsso.fastapi.core.currentuser
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fastsso.fastapi.core.exceptions module
+--------------------------------------
+
+.. automodule:: fastsso.fastapi.core.exceptions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fastsso.fastapi.core.logging module
+-----------------------------------
+
+.. automodule:: fastsso.fastapi.core.logging
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fastsso.fastapi.core
+   :members:
+   :undoc-members:
+   :show-inheritance:

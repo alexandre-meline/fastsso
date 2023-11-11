@@ -10,10 +10,5 @@ Welcome to fastsso's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
-Fast API
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   modules
+   fastsso.fsapi

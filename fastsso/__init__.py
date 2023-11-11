@@ -23,7 +23,7 @@ SOFTWARE.
 """
 
 # FastAPI
-from fastsso import fastapi
+from fastsso import fsapi
 
 # TODO: Add support for other frameworks
 # Django
