@@ -1,23 +1,31 @@
 from fastapi import FastAPI, Request, HTTPException
 from typing import List, Optional
+from dotenv import load_dotenv
+import os
 
 # Keycloak Fast SSO imports
 # Middleware for protecting endpoints {REQUIRED}
 from fastsso.fsapi.middleware import KeycloakFastSSOMiddleware
 # Decorators for protecting endpoints {OPTIONAL}
 from fastsso.fsapi.decorators import (require_realm_roles,
-                                        require_realm_roles,
-                                        require_scope,
-                                        require_email_verified,
-                                        require_active_user,
-                                        require_allowed_origin,
-                                        require_resource_access
-                                        )
+                                    require_realm_roles,
+                                    require_scope,
+                                    require_email_verified,
+                                    require_active_user,
+                                    require_allowed_origin,
+                                    require_resource_access
+                                    )
 
 # Functions to get user information from request state {OPTIONAL}
 from fastsso.fsapi.core.currentuser import *
 # Basic unprotected endpoint not requiring authentication {OPTIONAL} 
-from fastsso.fsapi.utils.unprotected_endpoints import unprotected_basic_endpoint, get_all_endpoints
+from fastsso.fsapi.utils.unprotected_endpoints import get_all_endpoints, unprotected_basic_endpoint
+
+load_dotenv('.env.test')
+BACKEND_SERVER_URL = os.getenv("BACKEND_SERVER_URL")
+BACKEND_CLIENT_ID = os.getenv("BACKEND_CLIENT_ID")
+BACKEND_REALM_NAME = os.getenv("BACKEND_REALM_NAME")
+BACKEND_CLIENT_SECRET_KEY = os.getenv("BACKEND_CLIENT_SECRET_KEY")
 
 app = FastAPI()
 
@@ -26,25 +34,26 @@ app = FastAPI()
 # except endpoints in unprotected_basic_endpoint
 # If you want to protect all endpoints, just remove unprotected_basic_endpoint
 # If you want to protect only some endpoints, just add them in unprotected_basic_endpoint
-# 
-app.add_middleware(KeycloakFastSSOMiddleware,   server_url='http://localhost:8080/', 
-                                                client_id='microservicebackend1', realm_name='master', 
-                                                client_secret_key='vzqJpMYa3CiO5VGXkd20q7tOebrsDsP1',
-                                                unprotected_endpoints=unprotected_basic_endpoint,
-                                                user_model=None, create_user=False)
+# unprotected_basic_endpoint = ["/docs", "/openapi.json", "/redoc"]
+
+app.add_middleware(KeycloakFastSSOMiddleware, server_url=BACKEND_SERVER_URL, 
+                                            client_id=BACKEND_CLIENT_ID,
+                                            realm_name=BACKEND_REALM_NAME, 
+                                            client_secret_key=BACKEND_CLIENT_SECRET_KEY,
+                                            unprotected_endpoints=unprotected_basic_endpoint,
+                                            user_model=None, create_user=False)
 
 # _________________________________________________________________ #
 #                                                                   #
 #                       UNPROTECTED ENDPOINTS                       #
+#                     JUST BEARER TOKEN REQUIRE                     #
 #                                                                   #
 # _________________________________________________________________ #
 
 # Unprotected endpoint
 @app.get("/")
 def read_root(request: Request):
-    #user = kc_user(request)
-    firstname = request.state.user.given_name
-    return {"message": f"Hi {firstname}!"}
+    return {"message": f"Hi {kc_user_first_name(request)}!"}
 
 
 # Unprotected endpoint
