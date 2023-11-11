@@ -26,5 +26,4 @@ from fastsso.fsapi.utils.user import (User,
                                         get_user_info)
 from fastsso.fsapi.utils.unprotected_endpoints import (unprotected_basic_endpoint, 
                                                          get_all_endpoints)
-
 from fastsso.fsapi.utils.keycloak_validator import keycloakValidator
