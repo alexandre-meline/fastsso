@@ -1,0 +1,40 @@
+site_name: FastSSO
+theme:
+  name: 'material'
+  features:
+    - content.tabs.link
+  palette:
+    primary: 'teal'
+    accent: 'teal'
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Fastapi: 
+    - Introduction: fsapi/module.md
+    - Core:
+      - User Information: fsapi/core/currentuser.md
+      - Logging: core/logging.md
+    - Middleware: fsapi/middleware/keycloak_middleware.md
+    - Utilities:
+      - Keycloak Validator: utils/keycloak_validator.md
+      - Unprotected Endpoints: utils/unprotected_endpoints.md
+    - Decorators: decorators.md
