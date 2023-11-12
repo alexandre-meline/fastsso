@@ -29,10 +29,10 @@ from pydantic import BaseModel
 from fastsso.fsapi.utils.keycloak_validator import keycloakValidator
 from fastsso.fsapi.utils.user import User, get_user_info
 from fastsso.fsapi.core.exceptions import (unauthorized_response,
-                                                    invalid_token_response,
-                                                    unverified_user_response,
-                                                    keycloak_server_not_up_response,
-                                                    keycloak_middleware_failed_response)
+                                            invalid_token_response,
+                                            unverified_user_response,
+                                            keycloak_server_not_up_response,
+                                            keycloak_middleware_failed_response)
 
 class KeycloakFastSSOMiddleware(BaseHTTPMiddleware):
     """
